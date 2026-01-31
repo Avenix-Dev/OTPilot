@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OTP Autofill Test Page - Avenix</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f1f5f9;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      color: #1e293b;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: #64748b;
+      margin-bottom: 32px;
+    }
+
+    .test-section {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .test-section h2 {
+      color: #1e293b;
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .test-section p {
+      color: #64748b;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      color: #475569;
+      margin-bottom: 6px;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="number"] {
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 18px;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      transition: border-color 0.15s ease;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #2563eb;
+    }
+
+    .single-digit-container {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .single-digit-container input {
+      width: 48px;
+      height: 56px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    .result {
+      margin-top: 16px;
+      padding: 12px;
+      background: #f0fdf4;
+      border-radius: 8px;
+      color: #166534;
+      font-size: 14px;
+      display: none;
+    }
+
+    .result.visible {
+      display: block;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 8px;
+      font-size: 12px;
+      font-weight: 500;
+      border-radius: 4px;
+      margin-left: 8px;
+    }
+
+    .badge-high {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .badge-medium {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .badge-low {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>OTP Autofill Test Page</h1>
+    <p class="subtitle">Test the Avenix OTP Autofill extension with these sample forms</p>
+
+    <!-- Test 1: Standard OTP with autocomplete -->
+    <div class="test-section">
+      <h2>Test 1: Standard OTP Field <span class="badge badge-high">High Priority</span></h2>
+      <p>Uses autocomplete="one-time-code" attribute (recommended by browsers)</p>
+      <label for="otp-standard">Enter verification code</label>
+      <input
+        type="text"
+        id="otp-standard"
+        name="otp"
+        autocomplete="one-time-code"
+        maxlength="6"
+        placeholder="Enter 6-digit code"
+        inputmode="numeric"
+      >
+      <div class="result" id="result-1"></div>
+    </div>
+
+    <!-- Test 2: Multi-field OTP -->
+    <div class="test-section">
+      <h2>Test 2: Multi-field OTP (6 boxes) <span class="badge badge-high">High Priority</span></h2>
+      <p>Individual input fields for each digit</p>
+      <label>Enter code</label>
+      <div class="single-digit-container">
+        <input type="text" maxlength="1" inputmode="numeric" class="digit-input">
+        <input type="text" maxlength="1" inputmode="numeric" class="digit-input">
+        <input type="text" maxlength="1" inputmode="numeric" class="digit-input">
+        <input type="text" maxlength="1" inputmode="numeric" class="digit-input">
+        <input type="text" maxlength="1" inputmode="numeric" class="digit-input">
+        <input type="text" maxlength="1" inputmode="numeric" class="digit-input">
+      </div>
+      <div class="result" id="result-2"></div>
+    </div>
+
+    <!-- Test 3: Named verification field -->
+    <div class="test-section">
+      <h2>Test 3: Named Verification Field <span class="badge badge-medium">Medium Priority</span></h2>
+      <p>Uses name/id containing "verification"</p>
+      <label for="verification-code">Verification code</label>
+      <input
+        type="tel"
+        id="verification-code"
+        name="verification_code"
+        maxlength="6"
+        placeholder="6-digit code"
+      >
+      <div class="result" id="result-3"></div>
+    </div>
+
+    <!-- Test 4: PIN field -->
+    <div class="test-section">
+      <h2>Test 4: PIN Field <span class="badge badge-medium">Medium Priority</span></h2>
+      <p>Uses placeholder mentioning "PIN"</p>
+      <label for="pin-field">Security PIN</label>
+      <input
+        type="number"
+        id="pin-field"
+        maxlength="4"
+        placeholder="Enter your PIN"
+      >
+      <div class="result" id="result-4"></div>
+    </div>
+
+    <!-- Test 5: Generic field (low score) -->
+    <div class="test-section">
+      <h2>Test 5: Generic Text Field <span class="badge badge-low">Low Priority</span></h2>
+      <p>No OTP-related attributes (should not auto-fill)</p>
+      <label for="generic-field">Enter value</label>
+      <input
+        type="text"
+        id="generic-field"
+        name="random_value"
+        placeholder="Any text here"
+      >
+      <div class="result" id="result-5"></div>
+    </div>
+
+    <!-- Test 6: 8-digit code -->
+    <div class="test-section">
+      <h2>Test 6: 8-digit Code <span class="badge badge-medium">Medium Priority</span></h2>
+      <p>Longer verification code</p>
+      <label for="code-8digit">Enter 8-digit code</label>
+      <input
+        type="text"
+        id="code-8digit"
+        name="token_code"
+        maxlength="8"
+        placeholder="Enter code"
+        inputmode="numeric"
+      >
+      <div class="result" id="result-6"></div>
+    </div>
+  </div>
+
+  <footer>
+    Built by <a href="https://avenix.dev" target="_blank">Avenix</a> |
+    <a href="https://github.com/sponsors/avenix" target="_blank">Support this project</a>
+  </footer>
+
+  <script>
+    // Add change listeners to show results
+    document.querySelectorAll('input').forEach((input, index) => {
+      input.addEventListener('input', () => {
+        const resultEl = document.getElementById(`result-${Math.floor(index / 6) + 1}`) ||
+                         document.getElementById(`result-${index + 1}`);
+        if (resultEl && input.value) {
+          resultEl.textContent = `Value entered: ${input.value}`;
+          resultEl.classList.add('visible');
+        }
+      });
+    });
+
+    // Multi-digit auto-advance
+    document.querySelectorAll('.digit-input').forEach((input, index, inputs) => {
+      input.addEventListener('input', (e) => {
+        if (e.target.value && index < inputs.length - 1) {
+          inputs[index + 1].focus();
+        }
+
+        // Show combined result
+        const combined = Array.from(inputs).map(i => i.value).join('');
+        const resultEl = document.getElementById('result-2');
+        if (combined) {
+          resultEl.textContent = `Combined code: ${combined}`;
+          resultEl.classList.add('visible');
+        }
+      });
+
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace' && !e.target.value && index > 0) {
+          inputs[index - 1].focus();
+        }
+      });
+    });
+
+    console.log('[Test Page] Loaded. Use window.__avenixOTP to debug field detection.');
+  </script>
+</body>
+</html>

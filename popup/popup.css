@@ -1,0 +1,346 @@
+/**
+ * Popup Styles - Avenix OTP Autofill
+ * Built by Avenix (https://avenix.dev)
+ */
+
+/* CSS Variables - Avenix Brand Colors */
+:root {
+  --avenix-primary: #2563eb;
+  --avenix-primary-hover: #1d4ed8;
+  --avenix-primary-light: #dbeafe;
+  --avenix-secondary: #64748b;
+  --avenix-success: #10b981;
+  --avenix-error: #ef4444;
+  --avenix-warning: #f59e0b;
+
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-tertiary: #94a3b8;
+
+  --border-color: #e2e8f0;
+  --border-radius: 8px;
+  --border-radius-sm: 6px;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+
+  --transition: all 0.15s ease;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  min-width: 320px;
+}
+
+/* Main Container */
+.popup-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-primary);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo svg {
+  flex-shrink: 0;
+}
+
+.logo-text {
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--text-primary);
+}
+
+/* Main Content */
+.main {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Section */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.section-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Status Row */
+.status-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  background: var(--bg-secondary);
+  border-radius: var(--border-radius);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-tertiary);
+  flex-shrink: 0;
+}
+
+.status-dot.connected {
+  background: var(--avenix-success);
+}
+
+.status-dot.disconnected {
+  background: var(--avenix-error);
+}
+
+.status-dot.checking {
+  background: var(--avenix-warning);
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.status-text {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* Code Display */
+.code-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background: var(--bg-tertiary);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+}
+
+.code-text {
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  color: var(--text-primary);
+}
+
+.code-text.empty {
+  color: var(--text-tertiary);
+}
+
+.code-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.code-meta {
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--avenix-primary);
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--avenix-primary-hover);
+}
+
+.btn-secondary {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: var(--border-color);
+}
+
+.btn-icon {
+  padding: 8px;
+  background: transparent;
+  color: var(--text-secondary);
+  border-radius: var(--border-radius-sm);
+}
+
+.btn-icon:hover:not(:disabled) {
+  background: var(--border-color);
+  color: var(--text-primary);
+}
+
+.btn-danger {
+  background: var(--avenix-error);
+  color: white;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: #dc2626;
+}
+
+/* Toggle */
+.toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 8px 0;
+}
+
+.toggle-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--avenix-primary);
+  cursor: pointer;
+}
+
+.toggle-text {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* Footer */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  margin-top: auto;
+}
+
+.footer-content {
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+.footer-link {
+  color: var(--avenix-primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+}
+
+.sponsor-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #db61a2;
+  background: #fdf2f8;
+  border-radius: var(--border-radius-sm);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.sponsor-btn:hover {
+  background: #fce7f3;
+}
+
+.sponsor-btn svg {
+  fill: #db61a2;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 16px;
+  background: var(--text-primary);
+  color: white;
+  font-size: 13px;
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--shadow-md);
+  z-index: 1000;
+  transition: var(--transition);
+}
+
+.toast.success {
+  background: var(--avenix-success);
+}
+
+.toast.error {
+  background: var(--avenix-error);
+}
+
+/* Utility */
+.hidden {
+  display: none !important;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section {
+  animation: fadeIn 0.2s ease;
+}

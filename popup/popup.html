@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OTPilot</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header with Avenix branding -->
+    <header class="header">
+      <div class="logo">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="28" height="28" rx="6" fill="#2563eb"/>
+          <path d="M7 19L14 9L21 19H7Z" fill="white"/>
+          <circle cx="14" cy="16" r="2" fill="#2563eb"/>
+        </svg>
+        <span class="logo-text">OTPilot</span>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="main">
+      <!-- Authentication section -->
+      <section id="auth-section" class="section">
+        <div class="status-row">
+          <span class="status-dot" id="status-dot"></span>
+          <span class="status-text" id="status-text">Checking...</span>
+        </div>
+        <button id="auth-btn" class="btn btn-primary">
+          <span id="auth-btn-text">Connect Gmail</span>
+        </button>
+      </section>
+
+      <!-- Code display section -->
+      <section id="code-section" class="section hidden">
+        <label class="section-label">Latest Code</label>
+        <div class="code-display">
+          <span id="current-code" class="code-text">------</span>
+          <div class="code-actions">
+            <button id="copy-btn" class="btn btn-icon" title="Copy code">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                <path d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1H2z"/>
+              </svg>
+            </button>
+            <button id="fill-btn" class="btn btn-icon" title="Fill now">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="code-meta" id="code-meta"></div>
+      </section>
+
+      <!-- Settings section -->
+      <section id="settings-section" class="section hidden">
+        <label class="toggle-label">
+          <input type="checkbox" id="auto-fill-toggle" checked>
+          <span class="toggle-text">Auto-fill when detected</span>
+        </label>
+      </section>
+
+      <!-- Actions -->
+      <section id="actions-section" class="section hidden">
+        <button id="check-btn" class="btn btn-secondary">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
+            <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
+          </svg>
+          Check Now
+        </button>
+      </section>
+    </main>
+
+    <!-- Footer with branding and sponsor link -->
+    <footer class="footer">
+      <div class="footer-content">
+        <span>Built by</span>
+        <a href="https://avenix.dev" target="_blank" rel="noopener" class="footer-link">Avenix</a>
+      </div>
+      <a href="https://github.com/sponsors/avenix" target="_blank" rel="noopener" class="sponsor-btn" title="Support this project">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+          <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+        </svg>
+        Sponsor
+      </a>
+    </footer>
+  </div>
+
+  <!-- Toast notification -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

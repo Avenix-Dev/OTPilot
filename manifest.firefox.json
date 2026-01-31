@@ -1,0 +1,51 @@
+{
+  "manifest_version": 2,
+  "name": "OTPilot",
+  "version": "1.0.0",
+  "description": "Automatically fill verification codes from Gmail. Privacy-first, open source. Built by Avenix.",
+  "author": "Avenix (https://avenix.dev)",
+  "homepage_url": "https://avenix.dev",
+
+  "permissions": [
+    "identity",
+    "storage",
+    "activeTab",
+    "https://www.googleapis.com/*"
+  ],
+
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["content.js"],
+    "run_at": "document_idle"
+  }],
+
+  "browser_action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "OTPilot"
+  },
+
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "otp-autofill@avenix.dev",
+      "strict_min_version": "109.0"
+    }
+  }
+}
